@@ -72,6 +72,8 @@ int main()
     // 需要自己调用wl_display_dispatch_queue明确指定需要派发的事件队列，所有的代理对象（wl_proxy）
     // 都有一个事件队列，如果没有明确指定都是从创建该代理对象的父对象继承过来的，最原始的是wl_display
     // 对象的事件队列，也就是wl_display->default_queue队列
+    //
+    // 指定事件队列是用于对一些事件循环的封装（隐藏实现细节，比如mesa里面的wl_drm）
     struct wl_event_queue *newq = wl_display_create_queue(display);
     wl_proxy_set_queue((struct wl_proxy *)registry, newq);
 
